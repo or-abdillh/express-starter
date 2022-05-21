@@ -1,12 +1,10 @@
 'use strict'
 
 // Import controllers
-const Comment = require('../controllers/CommentController.js')
+const user = require('../controllers/userController.js')
 
 module.exports = app => {
-	// index route
-	app.route('/comments')
-		.get( Comment.index )
-		.post( Comment.createComment )
-		.delete( Comment.destroyComment )
+	// Register and Login
+	app.route('/register').post( user.register )
+	app.route('/login').post( user.login )
 }
