@@ -2,7 +2,7 @@
   "development": {
     "username": "u0_a332",
     "password": "root",
-    "database": "guestbook",
+    "database": "blog",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
