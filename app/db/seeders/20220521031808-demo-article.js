@@ -9,7 +9,7 @@ module.exports = {
         content: `
           Porta. Etiam facilisis. Nam suscipit. Ut consectetuer leo vehicula augue. Aliquam cursus. Integer pharetra rhoncus massa. Cras et ligula vel quam tristique commodo. Sed est lectus, mollis quis, lacinia id, sollicitudin nec, eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi urna dui, fermentum quis, feugiat imperdiet, imperdiet id, sapien.
         `,
-        author: 'sandhika2340',
+        username: 'sandhika2340',
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -18,7 +18,7 @@ module.exports = {
         content: `
           Porta. Etiam facilisis. Nam suscipit. Ut consectetuer leo vehicula augue. Aliquam cursus. Integer pharetra rhoncus massa. Cras et ligula vel quam tristique commodo. Sed est lectus, mollis quis, lacinia id, sollicitudin nec, eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi urna dui, fermentum quis, feugiat imperdiet, imperdiet id, sapien.
         `,
-        author: 'sandhika2340',
+        username: 'sandhika2340',
         createdAt: new Date(),
         updatedAt: new Date()
       }

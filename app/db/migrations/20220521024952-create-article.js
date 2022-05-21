@@ -14,14 +14,13 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      author: {
+      username: {
         type: Sequelize.STRING,
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
         references: {
           model: 'users',
           key: 'username',
-          as: 'author'
         }
       },
       createdAt: {
