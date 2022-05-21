@@ -8,11 +8,11 @@
     "postgres-init": "initdb ~/pg",
     "postgres-start": "pg_ctl -D ~/pg start",
     "migrate": "npx sequelize-cli db:migrate",
-    "seeding": "npx sequelize-cli db:seed:all"
+    "seeding": "npx sequelize-cli db:seed:all --debug"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/or-abdillh/postgres-express.git"
+    "url": "git+https://github.com/or-abdillh/express-starter.git"
   },
   "keywords": [
     "PostgreSQL",
@@ -25,9 +25,9 @@
   "author": "Oka R. Abdillah",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/or-abdillh/postgres-express/issues"
+    "url": "https://github.com/or-abdillh/express-starter/issues"
   },
-  "homepage": "https://github.com/or-abdillh/postgres-express#readme",
+  "homepage": "https://github.com/or-abdillh/express-starter#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
