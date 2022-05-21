@@ -1,0 +1,9 @@
+'use strict'
+
+const path = require('path')
+
+module.exports = {
+	'models-path': path.resolve('app', 'db', 'models'),
+	'seeders-path': path.resolve('app', 'db', 'seeders'),
+	'migrations-path': path.resolve('app', 'db', 'migrations')
+}

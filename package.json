@@ -1,0 +1,44 @@
+{
+  "name": "postgres-express",
+  "version": "1.0.0",
+  "description": "A leraning project for implmenting PostgreSQL with Sequelize for build an API on Express application",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "postgres-init": "initdb ~/pg",
+    "postgres-start": "pg_ctl -D ~/pg start",
+    "migrate": "npx sequelize-cli db:migrate",
+    "seeding": "npx sequelize-cli db:seed:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/or-abdillh/postgres-express.git"
+  },
+  "keywords": [
+    "PostgreSQL",
+    "Sequelize",
+    "API",
+    "express",
+    "nodejs",
+    "node"
+  ],
+  "author": "Oka R. Abdillah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/or-abdillh/postgres-express/issues"
+  },
+  "homepage": "https://github.com/or-abdillh/postgres-express#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.4.1"
+  }
+}
