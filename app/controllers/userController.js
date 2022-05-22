@@ -4,10 +4,10 @@ require('dotenv').config({ path: `${process.cwd()}/.env` })
 
 const md5 = require('md5')
 const jwt = require('jsonwebtoken')
-const { models } = require('../../config/sequelize')
+const { models } = require('../db')
 const response = require('../response')
 
-const userController = {
+const user = {
 
 	async register(req, res) {
 		// Create new user
@@ -33,4 +33,4 @@ const userController = {
 	}
 }
 
-module.exports = userController
+module.exports = { user }

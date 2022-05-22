@@ -1,8 +1,8 @@
 'use strict'
 
 // Import controllers
-const user = require('../controllers/userController.js')
-const article = require('../controllers/articleController.js')
+const { user } = require('../controllers/userController.js')
+const { article } = require('../controllers/articleController.js')
 
 module.exports = app => {
 	// Register and Login

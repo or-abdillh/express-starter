@@ -1,9 +1,9 @@
 'use strict'
 
-const { models } = require('../../config/sequelize')
+const { models } = require('../db')
 const response = require('../response')
 
-const articleController = {
+const article = {
 
 	async index(req, res) {
 		// Get all articles
@@ -17,4 +17,4 @@ const articleController = {
 	}
 }
 
-module.exports = articleController
+module.exports = { article }

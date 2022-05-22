@@ -1,7 +1,7 @@
 'use sctrict'
 
 const { app } = require('./app')
-const sequelize = require('./config/sequelize')
+const sequelize = require('./app/db')
 
 // Try connection
 const connectToDatabase = async () => {
