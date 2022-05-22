@@ -21,7 +21,7 @@ for ( const model of models ) { model(sequelize, DataTypes) }
 
 // Define associate
 const { user, article } = sequelize.models
-user.hasMany(article, { foreignKey: 'username' })
+user.hasMany(article, { foreignKey: 'username', as: 'author' })
 article.belongsTo(user, { foreignKey: 'username' })
 
 module.exports = sequelize
