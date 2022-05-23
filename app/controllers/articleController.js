@@ -24,7 +24,7 @@ const article = {
 
 	async articleByUsername(req, res) {
 		// Get article using query username
-		const { author } = req.query
+		const { author } = req.params
 		try {
 			const articles = await models.article.findAll({ // select all
 				include: {
@@ -32,11 +32,10 @@ const article = {
 					where: {
 						username: author // where username === author
 					},
-					attributes: {
-						include: ['fullname'] // just return 'fullname' field
-					}
-				}, attributes: {
-					exclude: ['updatedAt'] // dont return 'updatedAt' field
+					attributes: ['fullname'], 
+				},
+				attributes: {
+					exclude: ['updatedAt', 'username'] // dont return 'updatedAt' field
 				}
 			})
 
