@@ -10,4 +10,5 @@ module.exports = app => {
 	app.route('/login').post( user.login )
 
 	app.route('/articles').get( article.index )
+	app.route('/articles/author').get( article.articleByUsername ) // must contain query username
 }

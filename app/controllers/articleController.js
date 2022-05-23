@@ -23,7 +23,27 @@ const article = {
 	},
 
 	async articleByUsername(req, res) {
-		// Get article using parameter username
+		// Get article using query username
+		const { author } = req.query
+		try {
+			const articles = await models.article.findAll({ // select all
+				include: {
+					model: models.user, // join tabel users
+					where: {
+						username: author // where username === author
+					},
+					attributes: {
+						include: ['fullname'] // just return 'fullname' field
+					}
+				}, attributes: {
+					exclude: ['updatedAt'] // dont return 'updatedAt' field
+				}
+			})
+
+			if (articles.length <= 0) response.notFound('Article not found', res)
+			else response.success({ articles }, res)
+
+		} catch(err) { response.internalServerError(err, res) }
 	}
 }
 
