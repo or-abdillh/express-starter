@@ -41,6 +41,17 @@ const article = {
 			else response.success({ articles }, res)
 
 		} catch(err) { response.internalServerError(err, res) }
+	},
+
+	async createArticle(req, res) {
+		// Create article
+		const { title, body } = req.body
+		const { username } = req.params
+
+		try {
+			await models.article.create({ title, body, username})
+			response.success('Success posting new article', res)
+		} catch(err) { response.internalServerError(err, res) }
 	}
 }
 

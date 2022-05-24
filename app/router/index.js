@@ -9,6 +9,9 @@ module.exports = app => {
 	app.route('/user/register').post( user.register )
 	app.route('/user/login').post( user.login )
 
-	app.route('/articles').get( article.index )
-	app.route('/user/articles/:username').get( article.articleByUsername ) // must contain query username
+	app.route('/articles').get( article.index ) // get all article or using query
+
+	app.route('/user/article/:username')
+		.get( article.articleByUsername ) // article by username
+		.post( article.createArticle ) // post new article
 }
