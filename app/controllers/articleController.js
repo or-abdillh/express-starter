@@ -45,11 +45,11 @@ const article = {
 
 	async createArticle(req, res) {
 		// Create article
-		const { title, body } = req.body
+		const { title, content } = req.body
 		const { username } = req.params
 
 		try {
-			await models.article.create({ title, body, username})
+			await models.article.create({ title, content, username})
 			response.success('Success posting new article', res)
 		} catch(err) { response.internalServerError(err, res) }
 	},
