@@ -62,6 +62,18 @@ const article = {
 			await models.article.destroy({ where: { id } })
 			response.success(`Success delete article with id ${id}`, res)
 		} catch(err) { response.internalServerError(err, res) }
+	},
+
+	async updateArticle(req, res) {
+		// Update article using id
+		const { id, title, content } = req.body
+		const { username } = req.params
+
+		try {
+			const updated = await models.article.update({ title, content, username }, { where: { id } })
+			if ( updated[0] === 0 ) response.notFound('Sorry article not found', res)
+			else response.success('Success update article', res)
+		} catch(err) { response.internalServerError(err, res) }
 	}
 }
 

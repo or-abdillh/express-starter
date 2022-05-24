@@ -15,4 +15,5 @@ module.exports = app => {
 		.get( article.articleByUsername ) // article by username
 		.post( article.createArticle ) // post new article
 		.delete( article.deleteArticle ) // delete article by id article
+		.put( article.updateArticle ) // update article by id article
 }
