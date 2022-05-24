@@ -24,14 +24,12 @@ const article = {
 
 	async articleByUsername(req, res) {
 		// Get article using query username
-		const { author } = req.params
-		try {
+		const { username } = req.params
+		try { 
 			const articles = await models.article.findAll({ // select all
 				include: {
 					model: models.user, // join tabel users
-					where: {
-						username: author // where username === author
-					},
+					where: { username }, // where username ===usernamer 
 					attributes: ['fullname'], 
 				},
 				attributes: {
