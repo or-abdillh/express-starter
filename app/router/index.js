@@ -14,4 +14,5 @@ module.exports = app => {
 	app.route('/user/article/:username')
 		.get( article.articleByUsername ) // article by username
 		.post( article.createArticle ) // post new article
+		.delete( article.deleteArticle ) // delete article by id article
 }

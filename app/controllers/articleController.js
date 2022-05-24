@@ -52,6 +52,16 @@ const article = {
 			await models.article.create({ title, body, username})
 			response.success('Success posting new article', res)
 		} catch(err) { response.internalServerError(err, res) }
+	},
+
+	async deleteArticle(req, res) {
+		// Delete article from table
+		const { id } = req.body
+
+		try {
+			await models.article.destroy({ where: { id } })
+			response.success(`Success delete article with id ${id}`, res)
+		} catch(err) { response.internalServerError(err, res) }
 	}
 }
 
