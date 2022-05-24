@@ -6,9 +6,9 @@ const { article } = require('../controllers/articleController.js')
 
 module.exports = app => {
 	// Register and Login
-	app.route('/register').post( user.register )
-	app.route('/login').post( user.login )
+	app.route('/user/register').post( user.register )
+	app.route('/user/login').post( user.login )
 
 	app.route('/articles').get( article.index )
-	app.route('/articles/author/:author').get( article.articleByUsername ) // must contain query username
+	app.route('/user/articles/:username').get( article.articleByUsername ) // must contain query username
 }
