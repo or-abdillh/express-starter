@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 
 // Import middlewares
 const { logging } = require('./middlewares/logging.js')
+const { authentication } = require('./middlewares/authentication.js')
 
 // Import routes
 const router = require('./router')
@@ -18,6 +19,11 @@ app.use( bodyParser.json() )
 app.use( cors() )
 
 app.use( logging )
+
+// Paths must secure from every access
+const pathsSecure = [ '/user/article/:username' ]
+
+app.use( pathsSecure, authentication )
 
 router(app)
 
