@@ -65,6 +65,23 @@ const article = {
 		} catch(err) { response.internalServerError(err, res) }
 	},
 
+	async articleByID(req, res) {
+		// Get article by ID article
+		const { id } = req.params
+		try {
+			const article = await models.article.findOne({
+				where: { id },
+				attributes: {
+					exclude: ['updatedAt', 'username']
+				}
+			})
+
+			if ( article === null ) response.notFound('Sorry, article not found', res)
+			else response.success({ article }, res)
+
+		} catch(err) { response.internalServerError(err, res) }
+	},
+
 	async createArticle(req, res) {
 		// Create article
 		const { title, content } = req.body
@@ -81,8 +98,10 @@ const article = {
 		const { id } = req.body
 
 		try {
-			await models.article.destroy({ where: { id } })
-			response.success(`Success delete article with id ${id}`, res)
+			const deleted = await models.article.destroy({ where: { id } })
+			if ( !deleted ) response.notFound('Article not found', res)
+			else response.success(`Success delete article with id ${id}`, res)
+
 		} catch(err) { response.internalServerError(err, res) }
 	},
 
@@ -93,7 +112,7 @@ const article = {
 
 		try {
 			const updated = await models.article.update({ title, content, username }, { where: { id } })
-			if ( updated[0] === 0 ) response.notFound('Sorry article not found', res)
+			if ( !updated[0] ) response.notFound('Sorry article not found', res)
 			else response.success('Success update article', res)
 		} catch(err) { response.internalServerError(err, res) }
 	}
