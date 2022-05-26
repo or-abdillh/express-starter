@@ -2,24 +2,46 @@
 
 const { models } = require('../db')
 const response = require('../response')
+const { Op } = require('sequelize')
 
 const article = {
 
 	async index(req, res) {
 		// Get all articles
+		if ( req.query.title !== undefined ) await article.articleByTitle(req, res) // get article by title query
+		else {
+			try {
+				const articles = await models.article.findAll({
+					include: {
+						model: models.user,
+						attributes: ['fullname']
+					},
+					attributes: { exclude: ['updatedAt', 'username'] }
+				})
+				response.success({ articles }, res)
+			} catch(err) { 
+				response.internalServerError(err, res)
+				console.log(err)
+			}
+		}
+	},
+
+	async articleByTitle(req, res) {
+		// Get article by title
+		const { title } = req.query
 		try {
 			const articles = await models.article.findAll({
-				include: {
-					model: models.user,
-					attributes: ['fullname']
-				},
-				attributes: { exclude: ['updatedAt', 'username'] }
+				where: {
+					title: {
+						[ Op.like ]: `%${title}%`
+					}
+				}
 			})
-			response.success({ articles }, res)
-		} catch(err) { 
-			response.internalServerError(err, res)
-			console.log(err)
-		}
+
+			if (articles.length === 0) response.notFound('Sorry article not found', res)
+			else response.success({ articles }, res)
+
+		} catch(err) { response.internalServerError(err, res) }
 	},
 
 	async articleByUsername(req, res) {
