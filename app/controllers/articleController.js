@@ -82,15 +82,37 @@ const article = {
 		} catch(err) { response.internalServerError(err, res) }
 	},
 
+	uploadFile(file, res, callback) {
+		// Generate file name
+		const format = file.name.split('.')[file.name.split('.').length - 1]
+		const fileName = `IMAGE-${ new Date().getTime() }.${ format }`
+
+		file.mv(`${process.cwd()}/public/images/${fileName}`, err => {
+			if (err) response.internalServerError(err, res)
+			else callback(fileName)
+		})
+	},
+
 	async createArticle(req, res) {
 		// Create article
 		const { title, content } = req.body
 		const { username } = req.params
 
-		try {
-			await models.article.create({ title, content, username})
-			response.success('Success posting new article', res)
-		} catch(err) { response.internalServerError(err, res) }
+		// Get files
+		if ( req.files === undefined ) response.notFound('Image from request not found', res)
+		else {
+			const { image } = req.files
+
+			article.uploadFile(image, res, async fileName => {
+				try {
+					await models.article.create({
+						title, content, username,
+						image: `http://${req.headers.host}/images/${fileName}`
+					})
+					response.success('Success posting new article', res)
+				} catch(err) { response.internalServerError(err, res) }
+			})
+		}
 	},
 
 	async deleteArticle(req, res) {

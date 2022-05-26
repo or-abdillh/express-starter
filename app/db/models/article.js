@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: DataTypes.TEXT,
     content: DataTypes.TEXT,
+    image: DataTypes.TEXT,
   }, {
     sequelize,
     modelName: 'article',
