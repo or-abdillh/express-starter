@@ -14,16 +14,19 @@ const getDurationInMilliseconds = start => {
 
 const createLog = (req, res, duration) => {
 
-	const { url, method } = req
+	const { originalUrl, method } = req
 	const { statusCode, statusMessage } = res
 	
-	const now = new Date().toLocaleString('id')
+	const now = new Date().toLocaleString()
 
-	const log = `[${now}] [${statusCode} - ${statusMessage}] ${url} ${method} ${duration.toLocaleString('id')}ms \n`
+	// Generate log file
+	const logFile = `log-file-${now.split(',')[0].split('/').reverse().join('-')}.txt`
 
-	fs.appendFile(`${process.cwd()}/log-request.txt`, log, () => {
+	const log = `[${now}] [${statusCode} - ${statusMessage}] ${originalUrl} ${method} ${duration.toLocaleString('id')}ms \n`
+
+	fs.appendFile(`${process.cwd()}/logs/${logFile}`, log, () => {
 		console.log(
-			`[${chalk.red(now)}] [${chalk.green(statusCode)} - ${chalk.green(statusMessage)}] ${url} ${chalk.blueBright(method)} ${chalk.red(duration.toLocaleString('id') + 'ms')}`
+			`[${chalk.red(now)}] [${chalk.green(statusCode)} - ${chalk.green(statusMessage)}] ${originalUrl} ${chalk.blueBright(method)} ${chalk.red(duration.toLocaleString('id') + 'ms')}`
 		)
 	})
 }	
