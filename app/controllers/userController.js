@@ -6,6 +6,7 @@ const md5 = require('md5')
 const jwt = require('jsonwebtoken')
 const { models } = require('../db')
 const response = require('../response')
+const {verify} = require('jsonwebtoken')
 
 const user = {
 
@@ -30,6 +31,18 @@ const user = {
 				response.success({ token }, res)
 			}
 		} catch(err) { response.internalServerError(err, res) }
+	},
+
+	async verify(req, res) {
+		// Verifying session login from token
+		const { token } = req.headers
+		if ( token === undefined ) response.forbidden('Token cannot to empty', res)
+		else {
+			jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+				if (err) response.forbidden('Your session invalid', res)
+				else response.success('Your session valid', res)
+			})
+		}
 	}
 }
 
