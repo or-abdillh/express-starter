@@ -128,12 +128,33 @@ const article = {
 		// Update article using id
 		const { id, title, content } = req.body
 		const { username } = req.params
+		
+		// reupload image
+		if ( req.files !== null ) {
+			const article = await models.article.findOne({ where: { id } })
+			const { image } = req.files
 
-		try {
-			const updated = await models.article.update({ title, content, username }, { where: { id } })
-			if ( !updated[0] ) response.notFound('Sorry article not found', res)
-			else response.success('Success update article', res)
-		} catch(err) { response.internalServerError(err, res) }
+			index.uploadFile(image, res, async fileName => {
+				try {
+					const updated = await models.article.update({ title, content, username, image: `http://${req.headers.host}/images/${fileName}` }, { where: { id } })	
+					if ( updated[0] ) {
+						// Remove old file
+						const oldPAth = process.cwd() + '/public/images/' + article.image.split('/')[article.image.split('/').length - 1]
+						index.destroyFile(oldPAth, res, destroyed => {
+							if (destroyed) response.success('Success update article and remove old image from server ', res)
+							else response.success('Success update article but fail to remove old image from server')
+						})
+					} else response.notFound('Article not found', res)
+				} catch(err) { response.internalServerError(err, res) }
+			})
+		} else { 
+			// Update article without reupload image
+			try {
+				const updated = await models.article.update({ title, content, username }, { where: { id } })
+				if ( !updated[0] ) response.notFound('Sorry article not found', res)
+				else response.success('Success update article', res)
+			} catch(err) { response.internalServerError(err, res) }
+		}
 	}
 }
 
