@@ -1,9 +1,10 @@
 {
-  "name": "postgres-express",
+  "name": "express-starter",
   "version": "1.0.0",
-  "description": "A leraning project for implmenting PostgreSQL with Sequelize for build an API on Express application",
-  "main": "server.js",
+  "description": "Starter Project For Build Rest API using Express JS For Create CRUD Action with PostgreSQL using Sequelize and support JWT Authentication",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "nodemon index.js",
     "postgres-init": "initdb ~/pg",
     "postgres-start": "pg_ctl -D ~/pg start",
