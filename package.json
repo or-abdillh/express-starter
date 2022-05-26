@@ -4,7 +4,7 @@
   "description": "Starter Project For Build Rest API using Express JS For Create CRUD Action with PostgreSQL using Sequelize and support JWT Authentication",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "pm2 start server.js --name express-server",
     "dev": "nodemon index.js",
     "postgres-init": "initdb ~/pg",
     "postgres-start": "pg_ctl -D ~/pg start",
