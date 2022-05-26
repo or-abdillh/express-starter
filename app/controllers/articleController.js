@@ -108,12 +108,19 @@ const article = {
 	async deleteArticle(req, res) {
 		// Delete article from table
 		const { id } = req.body
-
 		try {
+			const article = await models.article.findOne({ where: { id } })
 			const deleted = await models.article.destroy({ where: { id } })
-			if ( !deleted ) response.notFound('Article not found', res)
-			else response.success(`Success delete article with id ${id}`, res)
 
+			if ( !deleted && article === null ) response.notFound('Article not found', res)
+			else {
+				// destroy file image
+				const oldPAth = process.cwd() + '/public/images/' + article.image.split('/')[article.image.split('/').length - 1]
+				index.destroyFile(oldPAth, res, destroyed => {
+					if ( destroyed ) response.success('Success delete article and image from server', res)
+					else response.success('Success delete article but fail to remove image from server', res)
+				})
+			}
 		} catch(err) { response.internalServerError(err, res) }
 	},
 

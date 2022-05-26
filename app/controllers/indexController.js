@@ -1,6 +1,7 @@
 'use strict'
 
 const response = require('../response')
+const fs = require('fs')
 
 const index = {
 	home(req, res) {
@@ -15,6 +16,13 @@ const index = {
 		file.mv(`${process.cwd()}/public/images/${fileName}`, err => {
 			if (err) response.internalServerError(err, res)
 			else callback(fileName)
+		})
+	},
+
+	destroyFile(path, res, callback) {
+		fs.unlink(path, err => {
+			if (err) callback(false)
+			else callback(true)
 		})
 	}
 }
