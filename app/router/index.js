@@ -3,8 +3,12 @@
 // Import controllers
 const { user } = require('../controllers/userController.js')
 const { article } = require('../controllers/articleController.js')
+const { index } = require('../controllers/indexController.js')
 
 module.exports = app => {
+	
+	// Home
+	app.route('/').get( index.home )
 
 	// Can access without token
 	app.route('/articles').get( article.index ) // get all article or using query
