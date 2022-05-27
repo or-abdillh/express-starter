@@ -1,11 +1,12 @@
 'use strict'
 
+require('dotenv').config({ path: `${process.cwd()}/.env` })
 const response = require('../response')
 const fs = require('fs')
 
 const index = {
 	home(req, res) {
-		response.success('This is example response from your application', res)
+		response.success(`[ ${process.env.AUTHOR} - ${process.env.APP_NAME} ] This is example response from your application`, res)
 	},
 
 	uploadFile(file, res, callback) {

@@ -22,7 +22,6 @@ const article = {
 				response.success({ articles }, res)
 			} catch(err) { 
 				response.internalServerError(err, res)
-				console.log(err)
 			}
 		}
 	},

@@ -23,7 +23,7 @@ app.use( cors() )
 app.use( logging )
 
 // Public fir
-console.log(process.cwd())
+
 app.use( '/images', express.static( path.join(process.cwd(), '/public/images') ) )
 
 // Paths must secure from every access

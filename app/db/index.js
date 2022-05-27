@@ -6,6 +6,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 
 // Define node env
 const env = process.env.NODE_ENV || 'dev'
+
 const dialectOptions = env === 'dev' ? {  } : {
 	ssl: {
 		require: true,
@@ -30,6 +31,7 @@ for ( const model of models ) { model(sequelize, DataTypes) }
 
 // Define associate
 const { user, article } = sequelize.models
+
 user.hasMany(article, { foreignKey: 'username', as: 'author' })
 article.belongsTo(user, { foreignKey: 'username' })
 

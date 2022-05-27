@@ -1,5 +1,6 @@
 'use sctrict'
 
+require('dotenv').config({ path: `${process.cwd()}/.env` })
 const { app } = require('./app')
 const sequelize = require('./app/db')
 
@@ -21,7 +22,8 @@ const init = async () => {
 	// Running server
 	const PORT = process.env.PORT || 8000
 	app.listen(PORT, err => {
-		if (!err) console.log(`Server success running with PostgreSQL at port ${PORT}`)
+
+		if (!err) console.log(`[${process.env.AUTHOR} - ${process.env.APP_NAME}] Server success running with PostgreSQL at port ${PORT}`)
 		else console.log('Something was wrong on server connection : ', err)
 	})
 }
