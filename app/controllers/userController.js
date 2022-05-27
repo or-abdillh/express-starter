@@ -16,7 +16,10 @@ const user = {
 		try {
 			await models.user.create({ username, password: md5(password), fullname, email })
 			response.success(`Success create new account for ${fullname}`, res)
-		} catch(err) { response.internalServerError(err, res) }
+		} catch(err) {
+			if (err.parent.code === '23505') response.forbidden('Username has already exist', res) // Duplicate username
+			else response.internalServerError(err, res)
+		}
 	},
 
 	async login(req, res) {

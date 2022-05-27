@@ -86,6 +86,7 @@ const article = {
 		// Create article
 		const { title, content } = req.body
 		const { username } = req.params
+		console.log(req)
 
 		// Get files
 		if ( req.files === undefined ) response.notFound('Image from request not found', res)
