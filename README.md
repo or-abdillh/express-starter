@@ -34,7 +34,7 @@ This is the documentation about the API that has been made
 `http://localhost:8000`
 
 #### `/` `GET`
-Testing application or index route
+Testing application or index route <br>
 Response :
 ```json
 {
@@ -45,10 +45,30 @@ Response :
 	"createAt": "5/27/2022, 5:00:06 PM"
 }
 ``` 
+#### `/users` `GET`
+Get all users <br>
+Response :
+```json
+{
+  "status": true,
+  "code": 200,
+  "message": "Success",
+  "results": {
+    "users": [
+      {
+        "username": "fulan12",
+        "fullname": "Fulanah",
+        "createdAt": "2022-05-26T11:38:12.544Z"
+      }
+    ]
+  },
+  "createAt": "5/27/2022, 5:00:06 PM"
+}
 
+```
 
-##### 1. `/articles` `GET`  or `/articles?title=keyword` `GET`
-Get all articles or by query 
+##### `/articles` `GET`  or `/articles?title=keyword` `GET`
+Get all articles or by query <br>
 Response : 
 ``` json
 {
@@ -82,8 +102,8 @@ Response :
 }
 ```
 
-#### 2. `/articles/:username` `GET`
-Get article by username or author article
+#### `/articles/:username` `GET`
+Get article by username or author article <br>
 Response :
 ``` json
 {
@@ -116,8 +136,8 @@ Response :
 	"createAt": "5/27/2022, 5:00:06 PM"	
 }
 ```
-#### 3. `/article/:id` `GET`
-Get article by id article
+#### `/article/:id` `GET`
+Get article by id article <br>
 Response: 
 ``` json
 {
@@ -145,8 +165,8 @@ Response:
 	"createAt": "5/27/2022, 5:00:06 PM"	
 }
 ```
-#### 4. `/user/login` `POST`
-Get JWT token from login
+#### `/user/login` `POST`
+Get JWT token from login <br>
 Request body : 
 ``` javascript
 {
@@ -175,8 +195,8 @@ Response :
 	"createAt": "5/27/2022, 5:00:06 PM"	
 }
 ```
-#### 5. `/user/register` `POST`
-Create new account
+#### `/user/register` `POST`
+Create new account <br>
 Request body :
 ```javascript
 {
@@ -192,7 +212,7 @@ Response :
 	"status": true,
 	"code": 200,
     "message": "Success",
-	"results": "Success create account for fulanah"
+	"results": "Success create account for fulanah",
 	"createAt": "5/27/2022, 5:00:06 PM"
 }
 ``` 
@@ -206,8 +226,8 @@ Response :
 }
 ``` 
 
-#### 6. `/user/verify` `GET`
-JWT token verification
+#### `/user/verify` `GET`
+JWT token verification <br>
 Request headers :
 ```javascript
 { headers: { token: 'YOUR TOKEN' } }
@@ -232,8 +252,8 @@ Response :
 }
 ``` 
 
-#### 7. `/user/article/:username` `POST`
-Posting new article
+#### `/user/article/:username` `POST`
+Posting new article <br>
 Request headers :
 ```javascript
 { headers: { token: 'YOUR TOKEN' } }
@@ -259,8 +279,8 @@ Response :
 	"createAt": "5/27/2022, 5:00:06 PM"
 }
 ``` 
-#### 8. `/user/article/:username` `PUT`
-Change or update current article
+#### `/user/article/:username` `PUT`
+Change or update current article <br>
 Request header :
 ```javascript
 { headers: { token: 'YOUR TOKEN' } }
@@ -314,8 +334,8 @@ Response :
 	"createAt": "5/27/2022, 5:00:06 PM"
 }
 ``` 
-#### 9. `/user/article/:username` `DELETE`
-Delete article from database using id article
+#### `/user/article/:username` `DELETE`
+Delete article from database using id article <br>
 Request header :
 ```javascript
 { headers: { token: 'YOUR TOKEN' } }
@@ -381,14 +401,6 @@ Response :
 	"status": false,
 	"code": 403,
 	"message": "Forbidden",
-	"results": "Token cannot empty"
-}
-```
-```json
-{
-	"status": false,
-	"code": 403,
-	"message": "Forbidden",
 	"results": "You cannot access resource outside your account"
 }
 ```
@@ -434,10 +446,10 @@ I have created a simple front end application as an example of implementing the 
 
 
 ### Thanks 
-Support me with a cup of coffee and other snacks [here ..](https://saweria.co/orabdillh)
-Don't forget to give me star in this repository 🙏🏻🙏🏻
-See my other projects on instagram [@or.abdillh](http://www.instagram.com/or.abdillh)
+Support me with a cup of coffee and other snacks [here ..](https://saweria.co/orabdillh) <br>
+Don't forget to give me star in this repository 🙏🏻🙏🏻 <br>
+See my other projects on instagram [@or.abdillh](http://www.instagram.com/or.abdillh) <br>
 
 [Oka R Abdillah ](http://github.com/or-abdillh)
 <br>
-Last edited on : 27/05/2022
+Last edited on : 28/05/2022
