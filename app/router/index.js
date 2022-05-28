@@ -11,6 +11,7 @@ module.exports = app => {
 	app.route('/').get( index.home )
 
 	// Can access without token
+	app.route('/users').get( user.index )
 	app.route('/articles').get( article.index ) // get all article or using query
 	app.route('/articles/:username').get( article.articleByUsername ) // get article by username
 	app.route('/article/:id').get( article.articleByID ) // Get article by ID article

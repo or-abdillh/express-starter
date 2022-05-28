@@ -6,9 +6,17 @@ const md5 = require('md5')
 const jwt = require('jsonwebtoken')
 const { models } = require('../db')
 const response = require('../response')
-const {verify} = require('jsonwebtoken')
 
 const user = {
+	
+	async index(req, res) {
+		// Get all users
+		try {
+			const users = await models.user.findAll({ attributes: { exclude: ['password', 'updatedAt', 'email'] } })
+			response.success({ users }, res)
+
+		} catch(err) { response.internalServerError(err, res) }
+	},
 
 	async register(req, res) {
 		// Create new user
