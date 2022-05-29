@@ -1,5 +1,8 @@
 ### express-starter
 #### A starter project for build REST API with Express, Sequelize, PostgresSQL, supported JWT Authentication, and File Upload handler
+![GitHub](https://img.shields.io/github/license/or-abdillh/express-starter?style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/or-abdillh/express-starter?style=for-the-badge)
+![Github activity](https://img.shields.io/github/last-commit/or-abdillh/express-starter/main?style=for-the-badge)
 
 ## Documentation
 ### Getting Started
